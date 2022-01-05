@@ -1,0 +1,20 @@
+{
+  "name": "cocktails-backend",
+  "version": "1.0.0",
+  "description": "This app will allow bartenders to easily keep track of cocktails they create and share them with friends. Bar managers will also be able to create a page for their bar and bartenders can join to view and share bar-exclusive cocktail recipes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katherineyevsukov/cocktails-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/katherineyevsukov/cocktails-backend/issues"
+  },
+  "homepage": "https://github.com/katherineyevsukov/cocktails-backend#readme"
+}
