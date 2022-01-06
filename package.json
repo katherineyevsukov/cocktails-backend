@@ -6,7 +6,18 @@
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "migrate": "knex migrate:latest",
+    "rollback": "knex migrate:rollback",
+    "seed": "knex seed:run",
+    "migrateh": "heroku run knex migrate:latest -a cocktails-app-backend",
+    "rollbackh": "heroku run knex migrate:rollback -a cocktails-app-backend",
+    "databaseh": "heroku pg:psql -a cocktails-app-backend",
+    "seedh": "heroku run knex seed:run -a cocktails-app-backend",
+    "test": "cross-env NODE_ENV=testing jest --verbose --runInBand",
+    "deploy": "git push heroku main"
+  },
+  "engines": {
+    "node": "16.13.1"
   },
   "repository": {
     "type": "git",
