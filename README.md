@@ -257,7 +257,7 @@ table.enu('role', ['bartender', 'manager'])
       "user_id": 1,
       "username": "meowxologist",
       "first_name": "Clementine",
-      "last_name": "Yevsukov",
+      "last_name": "Kruczynski",
       "role_type": "manager"
     },
     {
