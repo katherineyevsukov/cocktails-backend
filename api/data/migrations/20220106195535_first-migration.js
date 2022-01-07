@@ -36,17 +36,36 @@ exports.up = async (knex) => {
       cocktails.timestamps(false, true);
     })
     .createTable("ingredients", (ingredients) => {
-        ingredients.increments("id");
-        ingredients.string("name", 300).notNullable();
-        ingredients.boolean("alcoholic").notNullable();
-        ingredients.timestamp("deleted_at");
-        ingredients.timestamps(false, true);
-      });
+      ingredients.increments("id");
+      ingredients.string("name", 300).notNullable();
+      ingredients.boolean("alcoholic").notNullable();
+      ingredients.timestamp("deleted_at");
+      ingredients.timestamps(false, true);
+    })
+    .createTable("cocktails_steps", (cocktails_steps) => {
+      cocktails_steps.primary(["cocktail_id", "user_id"]);
+      cocktails_steps
+        .integer("cocktail_id")
+        .unsigned()
+        .notNullable()
+        .references("id")
+        .inTable("cocktails")
+        .onUpdate("RESTRICT")
+        .onDelete("RESTRICT");
+      cocktails_steps
+        .integer("user_id")
+        .unsigned()
+        .notNullable()
+        .references("id")
+        .inTable("users")
+        .onUpdate("RESTRICT")
+        .onDelete("RESTRICT");
+      cocktails_steps.string("quantity").notNullable();
+      cocktails_steps.timestamp("deleted_at");
+      cocktails_steps.timestamps(false, true);
+    });
 };
 
 exports.down = async (knex) => {
-  await knex.schema
-  .dropTableIfExists("cocktails")
-  .dropTableIfExists("users");
-  
+  await knex.schema.dropTableIfExists("cocktails").dropTableIfExists("users");
 };
