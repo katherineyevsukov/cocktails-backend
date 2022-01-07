@@ -24,7 +24,7 @@ exports.up = async (knex) => {
       cocktails
         .enum("glass_type", [
           "coupe",
-          "martinini",
+          "martini",
           "collins",
           "highball",
           "nick & nora",
@@ -34,7 +34,14 @@ exports.up = async (knex) => {
       cocktails.string("garnish");
       cocktails.timestamp("deleted_at");
       cocktails.timestamps(false, true);
-    });
+    })
+    .createTable("ingredients", (ingredients) => {
+        ingredients.increments("id");
+        ingredients.string("name", 300).notNullable();
+        ingredients.boolean("alcoholic").notNullable();
+        ingredients.timestamp("deleted_at");
+        ingredients.timestamps(false, true);
+      });
 };
 
 exports.down = async (knex) => {
