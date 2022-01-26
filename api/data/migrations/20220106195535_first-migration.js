@@ -63,11 +63,15 @@ exports.up = async (knex) => {
       cocktails_ingredients.string("quantity").notNullable();
       cocktails_ingredients.timestamp("deleted_at");
       cocktails_ingredients.timestamps(false, true);
-    });
+    })
+    .createTable('cocktails_steps', (cocktails_steps) => {
+      cocktails_steps.primary(["cocktail_id", "step_id"])
+    })
 };
 
 exports.down = async (knex) => {
   await knex.schema
+  .dropTableIfExists("cocktails_steps")
   .dropTableIfExists("cocktails_ingredients")
   .dropTableIfExists("ingredients")
   .dropTableIfExists("cocktails")
