@@ -64,16 +64,28 @@ exports.up = async (knex) => {
       cocktails_ingredients.timestamp("deleted_at");
       cocktails_ingredients.timestamps(false, true);
     })
-    .createTable('cocktails_steps', (cocktails_steps) => {
-      cocktails_steps.primary(["cocktail_id", "step_id"])
-    })
+    .createTable("cocktails_steps", (cocktails_steps) => {
+      cocktails_steps.increments("id");
+      cocktails_steps.integer("step_number").notNullable();
+      cocktails_steps.string("step_instructions", 250).notNullable();
+      cocktails_steps
+        .integer("cocktail_id")
+        .unsigned()
+        .notNullable()
+        .references("id")
+        .inTable("cocktails")
+        .onUpdate("RESTRICT")
+        .onDelete("RESTRICT");
+      cocktails_steps.timestamp("deleted_at");
+      cocktails_steps.timestamps(false, true);
+    });
 };
 
 exports.down = async (knex) => {
   await knex.schema
-  .dropTableIfExists("cocktails_steps")
-  .dropTableIfExists("cocktails_ingredients")
-  .dropTableIfExists("ingredients")
-  .dropTableIfExists("cocktails")
-  .dropTableIfExists("users");
+    .dropTableIfExists("cocktails_steps")
+    .dropTableIfExists("cocktails_ingredients")
+    .dropTableIfExists("ingredients")
+    .dropTableIfExists("cocktails")
+    .dropTableIfExists("users");
 };
