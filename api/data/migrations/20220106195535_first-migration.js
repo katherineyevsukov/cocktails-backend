@@ -43,10 +43,12 @@ exports.up = async (knex) => {
       ingredients
         .enum("category", [
           "bourbon/whiskey",
+          "scotch",
           "vodka",
           "rum",
           "gin",
           "tequila",
+          "mezcal",
           "cordial",
           "bitters",
           "other",

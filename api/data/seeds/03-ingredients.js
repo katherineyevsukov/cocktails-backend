@@ -1,10 +1,10 @@
 exports.seed = function(knex, Promise) {
     return knex('ingredients').insert([   
-      { name: 'The Botanist Gin', alcoholic: true, category: ""},
-      { name: 'fresh lime juice', alcoholic: false, category: ""},
-      { name: 'rosemary simple syrup', alcoholic: false, category: ""},
-      { name: 'Carpano Antica Sweet Vermouth', alcoholic: true, category: ""},
-      { name: 'Michter\'s US1 Rye Whiskey', alcoholic: true, category: ""},
+      { name: 'The Botanist Gin', alcoholic: true, category: "gin"},
+      { name: 'fresh lime juice', alcoholic: false, category: "other"},
+      { name: 'rosemary simple syrup', alcoholic: false, category: "other"},
+      { name: 'Carpano Antica Sweet Vermouth', alcoholic: true, category: "cordial"},
+      { name: 'Michter\'s US1 Rye Whiskey', alcoholic: true, category: "bourbon/whiskey"},
       { name: 'Angostura Aromatic Bitters', alcoholic: true, category: ""},
       { name: 'Cointreau Orange Liquer', alcoholic: true, category: "" },
       { name: 'Casamigos Reposado Tequila', alcoholic: true, category: ""},
