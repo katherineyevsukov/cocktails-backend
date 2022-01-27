@@ -48,7 +48,7 @@ exports.up = async (knex) => {
           "gin",
           "tequila",
           "cordial",
-          "bitter",
+          "bitters",
           "other",
         ])
         .notNullable()
