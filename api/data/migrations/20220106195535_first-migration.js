@@ -28,7 +28,7 @@ exports.up = async (knex) => {
           "collins",
           "highball",
           "nick & nora",
-          'double rocks'
+          "double rocks",
         ])
         .notNullable();
       cocktails.string("photo");
@@ -40,6 +40,19 @@ exports.up = async (knex) => {
       ingredients.increments("id");
       ingredients.string("name", 300).notNullable();
       ingredients.boolean("alcoholic").notNullable();
+      ingredients
+        .enum("category", [
+          "bourbon/whiskey",
+          "vodka",
+          "rum",
+          "gin",
+          "tequila",
+          "cordial",
+          "bitter",
+          "other",
+        ])
+        .notNullable()
+        .defaultTo("other");
       ingredients.timestamp("deleted_at");
       ingredients.timestamps(false, true);
     })
