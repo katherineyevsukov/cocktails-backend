@@ -10,4 +10,13 @@ router.get("/", async (req, res, next) => {
     }
   });
 
+  router.get("/:id", async (req, res, next) => {
+    try {
+      const cocktail = await Cocktails.getByCocktailId(req.params.id);
+      res.status(200).json(cocktail);
+    } catch (err) {
+      next(err);
+    }
+  });
+
   module.exports = router;
