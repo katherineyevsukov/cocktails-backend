@@ -32,7 +32,8 @@ async function getByCocktailId(id) {
     )
     .join("users as u", "c.user_id", "u.id")
     .whereNull("c.deleted_at", "u.deleted_at")
-    .andWhere("c.id", id);
+    .andWhere("c.id", id)
+    .first()
 
   return cocktail;
 }

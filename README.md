@@ -274,7 +274,6 @@ table.enu('role', ['bartender', 'manager'])
 
 </details>
 
-
 # <p align="center">Cocktails API</p>
 
 ## <p align="center">https://dashboard.heroku.com/apps/cocktails-app-backend</p>
@@ -298,6 +297,9 @@ _What you receive:_
         "id": 1,
         "name": "Rosemary Gimlet",
         "photo": "https://abeautifulmess.com/wp-content/uploads/2019/07/easy-gimlet-cocktail-recipe.jpg",
+        "glass_type": "coupe",
+        "garnish": "rosemary sprig",
+        "user_id": 1,
         "first_name": "Kat",
         "last_name": "Yevsukov"
     },
@@ -305,6 +307,9 @@ _What you receive:_
         "id": 2,
         "name": "Manhattan",
         "photo": "https://images.unsplash.com/photo-1582056509381-33e11b85733f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1336&q=80",
+        "glass_type": "coupe",
+        "garnish": "luxardo cherry skewer",
+        "user_id": 1,
         "first_name": "Kat",
         "last_name": "Yevsukov"
     },
@@ -312,8 +317,35 @@ _What you receive:_
         "id": 3,
         "name": "Clem's Margarita",
         "photo": "https://images.unsplash.com/photo-1601887573188-79fb3c767157?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1315&q=80",
+        "glass_type": "double rocks",
+        "garnish": "dehydrated lime",
+        "user_id": 2,
         "first_name": "Clementine",
         "last_name": "Kruczynski"
     }
 ]
+```
+
+### [GET] /api/cocktails/:id
+
+**_RESTRICTED ENDPOINT_**
+
+- _where :id is cocktail id (example uses "1" for **:id** in URL)_
+
+- Get information for a specific cocktail
+  - _requires valid token in authorization header to access_
+
+_What you receive:_
+
+```json
+{
+    "id": 1,
+    "name": "Rosemary Gimlet",
+    "photo": "https://abeautifulmess.com/wp-content/uploads/2019/07/easy-gimlet-cocktail-recipe.jpg",
+    "glass_type": "coupe",
+    "garnish": "rosemary sprig",
+    "user_id": 1,
+    "first_name": "Kat",
+    "last_name": "Yevsukov"
+}
 ```
