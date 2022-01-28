@@ -273,3 +273,47 @@ table.enu('role', ['bartender', 'manager'])
 ```
 
 </details>
+
+
+# <p align="center">Cocktails API</p>
+
+## <p align="center">https://dashboard.heroku.com/apps/cocktails-app-backend</p>
+
+## <p align="center">---------- Users ----------</p>
+
+## <p align="center">---------- COCKTAILS ----------</p>
+
+### [GET] /api/cocktails
+
+**_RESTRICTED ENDPOINT_**
+
+- Get an array of all cocktails from all users
+  - _requires valid token in authorization header to access_
+
+_What you receive:_
+
+```json
+[
+    {
+        "id": 1,
+        "name": "Rosemary Gimlet",
+        "photo": "https://abeautifulmess.com/wp-content/uploads/2019/07/easy-gimlet-cocktail-recipe.jpg",
+        "first_name": "Kat",
+        "last_name": "Yevsukov"
+    },
+    {
+        "id": 2,
+        "name": "Manhattan",
+        "photo": "https://images.unsplash.com/photo-1582056509381-33e11b85733f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1336&q=80",
+        "first_name": "Kat",
+        "last_name": "Yevsukov"
+    },
+    {
+        "id": 3,
+        "name": "Clem's Margarita",
+        "photo": "https://images.unsplash.com/photo-1601887573188-79fb3c767157?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1315&q=80",
+        "first_name": "Clementine",
+        "last_name": "Kruczynski"
+    }
+]
+```
