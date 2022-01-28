@@ -18,3 +18,11 @@ beforeAll(async () => {
           expect(1 + 1).toBe(2)
       })
   })
+
+  describe('[GET] /api/cocktails', () => {
+    test('responds with all the cocktails', async () => {
+      const res = await request(server).get('/api/cocktails')
+      expect(res.status).toBe(200)
+      expect(res.body).toHaveLength(3)
+    })
+  })
