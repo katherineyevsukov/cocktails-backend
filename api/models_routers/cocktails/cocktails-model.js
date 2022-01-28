@@ -2,7 +2,16 @@ const db = require("../../data/db-config");
 
 async function getAll() {
   const cocktails = await db("cocktails as c")
-    .select("c.id", "c.name", "c.photo", "c.glass_type", "c.garnish", "u.id as user_id", "u.first_name", "u.last_name")
+    .select(
+      "c.id",
+      "c.name",
+      "c.photo",
+      "c.glass_type",
+      "c.garnish",
+      "u.id as user_id",
+      "u.first_name",
+      "u.last_name"
+    )
     .join("users as u", "c.user_id", "u.id")
     .whereNull("c.deleted_at", "u.deleted_at");
 
@@ -10,15 +19,23 @@ async function getAll() {
 }
 
 async function getByCocktailId(id) {
-    const cocktail = await db("cocktails as c")
-    .select("c.id", "c.name", "c.photo", "c.glass_type", "c.garnish", "u.id as user_id", "u.first_name", "u.last_name")
+  const cocktail = await db("cocktails as c")
+    .select(
+      "c.id",
+      "c.name",
+      "c.photo",
+      "c.glass_type",
+      "c.garnish",
+      "u.id as user_id",
+      "u.first_name",
+      "u.last_name"
+    )
     .join("users as u", "c.user_id", "u.id")
     .whereNull("c.deleted_at", "u.deleted_at")
-    .andWhere('c.id', id)
+    .andWhere("c.id", id);
 
   return cocktail;
 }
-
 
 // getById(3).then(res => {
 //     console.log(res)
