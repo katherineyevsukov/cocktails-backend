@@ -280,6 +280,34 @@ table.enu('role', ['bartender', 'manager'])
 
 ## <p align="center">---------- Users ----------</p>
 
+### [GET] /api/users/
+
+**_RESTRICTED ENDPOINT_**
+
+- Get an array of users
+  - _requires valid token in authorization header to access_
+
+_What you receive:_
+
+```json
+[
+    {
+        "id": 1,
+        "email": "kat@kat.com",
+        "first_name": "Kat",
+        "last_name": "Yevsukov",
+        "phone": "111-111-1111"
+    },
+    {
+        "id": 2,
+        "email": "clem@clem.com",
+        "first_name": "Clementine",
+        "last_name": "Kruczynski",
+        "phone": "222-222-2222"
+    }
+]
+```
+
 ## <p align="center">---------- COCKTAILS ----------</p>
 
 ### [GET] /api/cocktails
