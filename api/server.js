@@ -3,6 +3,7 @@ const cors = require('cors')
 const helmet = require('helmet')
 
 const cocktailsRouter = require('./../api/models_routers/cocktails/cocktails-router')
+const usersRouter = require('./models_routers/users/users-router')
 
 const server = express()
 
@@ -11,6 +12,7 @@ server.use(cors())
 server.use(helmet())
 
 server.use('/api/cocktails', cocktailsRouter)
+server.use('/api/users', usersRouter)
 
 server.get('/', (req, res, next) => {
     res.send('api is up and running!')
