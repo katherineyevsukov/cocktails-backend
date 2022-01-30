@@ -2,9 +2,9 @@ const Users = require('../users/users-model');
 const bcrypt = require("bcryptjs");
 
 const checkUserValid = async (req, res, next) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
     try {
-      const existingUser = await Users.findBy({ username });
+      const existingUser = await Users.findBy({ email });
       if (
         existingUser &&
         bcrypt.compareSync(password, existingUser.password)
