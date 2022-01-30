@@ -18,3 +18,5 @@ const checkUserValid = async (req, res, next) => {
       next(err);
     }
   };
+
+  module.exports = { checkUserValid }

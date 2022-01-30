@@ -32,4 +32,5 @@ findBy({ email: "kat@kat.com" }).then((res) => {
 
 module.exports = {
   findAll,
+  findBy
 };
