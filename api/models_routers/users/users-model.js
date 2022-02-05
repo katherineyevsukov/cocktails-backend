@@ -26,11 +26,23 @@ async function findBy(filter) {
   return user;
 }
 
-findBy({ email: "kat@kat.com" }).then((res) => {
-  console.log(res);
-});
+async function add(newUser) {
+  const [createdUser] = await db("users").insert(newUser, ["id",
+  "email",
+  "password",
+  "first_name",
+  "last_name",
+  "phone"])
+
+  return createdUser
+}
+
+add({email: 'fritz@fritz.com', password: 'password', first_name: 'fritz', last_name: 'frankilin', phone: '444-444-4444'}).then(res => {
+  console.log(res)
+})
 
 module.exports = {
   findAll,
-  findBy
+  findBy,
+  add
 };
