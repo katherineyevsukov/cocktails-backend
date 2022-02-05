@@ -1,5 +1,6 @@
 const Users = require('../users/users-model');
 const bcrypt = require("bcryptjs");
+const { BCRYPT_ROUNDS } = require("./../../config/index")
 
 const checkUserValid = async (req, res, next) => {
     const { email, password } = req.body;
@@ -19,4 +20,11 @@ const checkUserValid = async (req, res, next) => {
     }
   };
 
-  module.exports = { checkUserValid }
+  const hashPassword = async (req, res, next) => {
+    let user = req.body
+    const hash = bcrypt.hashSync(user.password, BCRYPT_ROUNDS);
+    user.password = hash
+    next()
+  }
+
+  module.exports = { checkUserValid, hashPassword}

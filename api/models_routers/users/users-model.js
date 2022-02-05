@@ -37,9 +37,9 @@ async function add(newUser) {
   return createdUser
 }
 
-add({email: 'fritz@fritz.com', password: 'password', first_name: 'fritz', last_name: 'frankilin', phone: '444-444-4444'}).then(res => {
-  console.log(res)
-})
+// add({email: 'fritz@fritz.com', password: 'password', first_name: 'fritz', last_name: 'frankilin', phone: '444-444-4444'}).then(res => {
+//   console.log(res)
+// })
 
 module.exports = {
   findAll,
