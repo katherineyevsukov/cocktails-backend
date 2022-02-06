@@ -2,7 +2,7 @@ const yup = require("yup")
 
 const phoneRegExp = /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/
 
-const userSchema = yup.object.shape({
+const userSchema = yup.object().shape({
     email: yup
     .string()
     .typeError("email address must be a string")

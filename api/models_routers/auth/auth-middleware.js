@@ -1,6 +1,7 @@
 const Users = require('../users/users-model');
 const bcrypt = require("bcryptjs");
 const { BCRYPT_ROUNDS } = require("./../../config/index")
+const { userSchema } = require("./auth-schemas")
 const yup = require("yup")
 
 const checkUserValid = async (req, res, next) => {
@@ -27,5 +28,19 @@ const checkUserValid = async (req, res, next) => {
     user.password = hash
     next()
   }
+
+  // const checkEmailUnique = async (req, res, next) => {
+  //   try {
+  //     const existingEmail
+  //   } catch (err){
+  //     next(err)
+  //   }
+  // }
+
+  // const checkPhoneUnique = async (req, res, next) => {
+
+  // }
+
+
 
   module.exports = { checkUserValid, hashPassword}
