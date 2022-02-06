@@ -7,7 +7,7 @@ const userSchema = yup.object.shape({
     .email("must be a valid email address ")
     .max(255, "email cannot belonger than 255 chars")
     .required("email is required"),
-    pasword: yup
+    password: yup
     .string()
     .typeError("password must be a string")
     .min(8, "password must be at least 8 chars")
@@ -18,5 +18,12 @@ const userSchema = yup.object.shape({
     .typeError("first name must be a string")
     .min(1, "first name must be at least 1 char")
     .max(50, "first name cannot be longer than 30 chars")
-    .required("first name is requires")
+    .required("first name is required"),
+    last_name: yup
+    .string()
+    .typeError("last name must be a string")
+    .min(1, "last name must be at least 1 char")
+    .max(50, "last name cannot be longer than 30 chars")
+    .required("last name is required"),
+    phone_number: yup
 })
