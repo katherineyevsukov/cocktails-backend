@@ -1,6 +1,7 @@
 const Users = require('../users/users-model');
 const bcrypt = require("bcryptjs");
 const { BCRYPT_ROUNDS } = require("./../../config/index")
+const yup = require("yup")
 
 const checkUserValid = async (req, res, next) => {
     const { email, password } = req.body;

@@ -1,7 +1,5 @@
 const router = require('express').Router()
-const bcrypt = require('bcryptjs')
 const tokenBuilder = require("./token-builder")
-const { BCRYPT_ROUNDS } = require("./../../config/index")
 const { checkUserValid, hashPassword } = require('./../auth/auth-middleware')
 
 router.post("/login", checkUserValid, (req, res) => {
