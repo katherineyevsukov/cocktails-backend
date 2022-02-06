@@ -40,6 +40,23 @@ const checkEmailUnique = async (req, res, next) => {
   }
 };
 
-const checkPhoneUnique = async (req, res, next) => {};
+const checkPhoneUnique = async (req, res, next) => {
+  try {
+    const existingPhone = await Users.findBy({ phone: req.body.phone });
+    !existingPhone
+      ? next()
+      : next({
+          status: 400,
+          message: "an account with this phone already exists",
+        });
+  } catch (err) {
+    next(err);
+  }
+};
 
-module.exports = { checkUserValid, hashPassword, checkEmailUnique };
+module.exports = {
+  checkUserValid,
+  hashPassword,
+  checkEmailUnique,
+  checkPhoneUnique,
+};

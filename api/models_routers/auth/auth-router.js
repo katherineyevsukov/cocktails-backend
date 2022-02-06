@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const tokenBuilder = require("./token-builder")
-const { checkUserValid, hashPassword } = require('./../auth/auth-middleware')
+const { checkUserValid, hashPassword, checkEmailUnique, checkPhoneUnique } = require('./../auth/auth-middleware')
 
 router.post("/login", checkUserValid, (req, res) => {
     const user = req.userFromDb;
@@ -9,7 +9,7 @@ router.post("/login", checkUserValid, (req, res) => {
       .json({ message: `welcome, ${user.first_name}`, email: user.email, token: tokenBuilder(user) });
   });
 
-  router.post("/register", hashPassword, (req, res, next) => {
+  router.post("/register", hashPassword, checkEmailUnique, checkPhoneUnique, (req, res, next) => {
     console.log(req.body)
   })
 
