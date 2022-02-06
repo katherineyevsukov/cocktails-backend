@@ -1,5 +1,7 @@
 const yup = require("yup")
 
+const phoneRegExp = /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/
+
 const userSchema = yup.object.shape({
     email: yup
     .string()
@@ -26,4 +28,10 @@ const userSchema = yup.object.shape({
     .max(50, "last name cannot be longer than 30 chars")
     .required("last name is required"),
     phone_number: yup
+    .string()
+    .typeError("phone number must be a string")
+    .matches(phoneRegExp, 'Phone number is not valid')
+    .required("last name is required")
 })
+
+module.exports = { userSchema }
