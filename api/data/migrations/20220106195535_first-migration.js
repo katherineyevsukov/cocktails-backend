@@ -10,6 +10,12 @@ exports.up = async (knex) => {
       users.timestamp("deleted_at");
       users.timestamps(false, true);
     })
+    .createTable("glasses", (users) => {
+      users.increments("id");
+      users.string("type", 254).notNullable().unique();
+      users.timestamp("deleted_at");
+      users.timestamps(false, true);
+    })
     .createTable("cocktails", (cocktails) => {
       cocktails.increments("id");
       cocktails.string("name", 300).notNullable();
@@ -21,16 +27,14 @@ exports.up = async (knex) => {
         .inTable("users")
         .onUpdate("RESTRICT")
         .onDelete("RESTRICT");
-      cocktails
-        .enum("glass_type", [
-          "coupe",
-          "martini",
-          "collins",
-          "highball",
-          "nick & nora",
-          "double rocks",
-        ])
-        .notNullable();
+        cocktails
+        .integer("glass_type")
+        .unsigned()
+        .notNullable()
+        .references("id")
+        .inTable("glasses")
+        .onUpdate("RESTRICT")
+        .onDelete("RESTRICT");
       cocktails.string("photo");
       cocktails.string("garnish");
       cocktails.timestamp("deleted_at");
