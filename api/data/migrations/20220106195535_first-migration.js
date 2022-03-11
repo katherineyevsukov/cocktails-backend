@@ -27,7 +27,7 @@ exports.up = async (knex) => {
         .inTable("users")
         .onUpdate("RESTRICT")
         .onDelete("RESTRICT");
-        cocktails
+      cocktails
         .integer("glass_type")
         .unsigned()
         .notNullable()

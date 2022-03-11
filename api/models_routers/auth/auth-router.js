@@ -11,12 +11,10 @@ const {
 
 router.post("/login", checkUserValid, (req, res) => {
   const user = req.userFromDb;
-  res
-    .status(200)
-    .json({
-      message: `welcome, ${user.first_name}`,
-      token: tokenBuilder(user),
-    });
+  res.status(200).json({
+    message: `welcome, ${user.first_name}`,
+    token: tokenBuilder(user),
+  });
 });
 
 router.post(
@@ -25,9 +23,14 @@ router.post(
   hashPassword,
   checkEmailUnique,
   checkPhoneUnique,
-  createNewUser, 
+  createNewUser,
   (req, res, next) => {
-    res.status(201).json({ message: 'Account has been successfully created!', user: req.newUser})
+    res
+      .status(201)
+      .json({
+        message: "Account has been successfully created!",
+        user: req.newUser,
+      });
   }
 );
 

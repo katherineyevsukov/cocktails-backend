@@ -79,23 +79,23 @@ const validateRegistrationBody = async (req, res, next) => {
   try {
     const validatedSignUp = await userSchema.validate(req.body, {
       strict: false,
-      stripUnknown: true
-    })
-    req.body = validatedSignUp
-    next()
-  } catch(err){
-    next({status: 400, message: err.message})
+      stripUnknown: true,
+    });
+    req.body = validatedSignUp;
+    next();
+  } catch (err) {
+    next({ status: 400, message: err.message });
   }
-}
+};
 const createNewUser = async (req, res, next) => {
   try {
-    const newUser = await Users.add(req.body)
-    req.newUser = newUser
-    next()
-  } catch(err){
-    next(err)
+    const newUser = await Users.add(req.body);
+    req.newUser = newUser;
+    next();
+  } catch (err) {
+    next(err);
   }
-}
+};
 
 module.exports = {
   checkUserValid,
@@ -103,5 +103,5 @@ module.exports = {
   checkEmailUnique,
   checkPhoneUnique,
   validateRegistrationBody,
-  createNewUser
+  createNewUser,
 };
