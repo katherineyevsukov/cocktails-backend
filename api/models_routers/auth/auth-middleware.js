@@ -87,11 +87,21 @@ const validateRegistrationBody = async (req, res, next) => {
     next({status: 400, message: err.message})
   }
 }
+const createNewUser = async (req, res, next) => {
+  try {
+    const newUser = await Users.add(req.body)
+    req.newUser = newUser
+    next()
+  } catch(err){
+    next(err)
+  }
+}
 
 module.exports = {
   checkUserValid,
   hashPassword,
   checkEmailUnique,
   checkPhoneUnique,
-  validateRegistrationBody
+  validateRegistrationBody,
+  createNewUser
 };

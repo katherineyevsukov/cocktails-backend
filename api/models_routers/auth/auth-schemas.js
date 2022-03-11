@@ -31,7 +31,7 @@ const userSchema = yup.object().shape({
     .string()
     .typeError("phone number must be a string")
     .matches(phoneRegExp, 'Phone number is not valid')
-    .required("last name is required")
+    .required("phone number is required")
 })
 
 module.exports = { userSchema }
