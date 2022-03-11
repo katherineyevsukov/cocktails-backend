@@ -1,8 +1,29 @@
 const Users = require("../users/users-model");
 const bcrypt = require("bcryptjs");
-const { BCRYPT_ROUNDS } = require("./../../config/index");
+const { BCRYPT_ROUNDS, TOKEN_SECRET } = require("./../../config/index");
 const { userSchema } = require("./auth-schemas");
 const yup = require("yup");
+
+const restricted = (req, res, next) => {
+  const token = req.headers.authorization;
+
+  if (!token) {
+    next({ status: 401, message: "Token required" });
+  } else {
+    jwt.verify(token, TOKEN_SECRET, (err, decoded) => {
+      if (err) {
+        delete req.decodedJwt;
+        next({
+          status: 401,
+          message: "Token invalid",
+        });
+      } else {
+        req.decodedJwt = decoded;
+        next();
+      }
+    });
+  }
+};
 
 const checkUserValid = async (req, res, next) => {
   const { email, password } = req.body;
@@ -54,9 +75,23 @@ const checkPhoneUnique = async (req, res, next) => {
   }
 };
 
+const validateRegistrationBody = async (req, res, next) => {
+  try {
+    const validatedSignUp = await userSchema.validate(req.body, {
+      strict: false,
+      stripUnknown: true
+    })
+    req.body = validatedSignUp
+    next()
+  } catch(err){
+    next({status: 400, message: err.message})
+  }
+}
+
 module.exports = {
   checkUserValid,
   hashPassword,
   checkEmailUnique,
   checkPhoneUnique,
+  validateRegistrationBody
 };

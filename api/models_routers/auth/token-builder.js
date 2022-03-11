@@ -4,7 +4,7 @@ const { TOKEN_SECRET } = require("./../../config");
 module.exports = function buildToken(user) {
   const payload = {
     subject: user.id,
-    username: user.email,
+    email: user.email,
   };
   const options = {
     expiresIn: "1d",

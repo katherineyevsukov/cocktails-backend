@@ -10,4 +10,15 @@ router.get("/", async (req, res, next) => {
     }
   });
 
+  router.get("/current", async (req, res, next) => {
+    try {
+      const usersList = await Users.findAll();
+      res.status(200).json(usersList);
+    } catch (err) {
+      next(err);
+    }
+  });
+
+  
+
   module.exports = router

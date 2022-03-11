@@ -27,7 +27,7 @@ const userSchema = yup.object().shape({
     .min(1, "last name must be at least 1 char")
     .max(50, "last name cannot be longer than 30 chars")
     .required("last name is required"),
-    phone_number: yup
+    phone: yup
     .string()
     .typeError("phone number must be a string")
     .matches(phoneRegExp, 'Phone number is not valid')
