@@ -33,7 +33,7 @@ const checkUserValid = async (req, res, next) => {
       req.userFromDb = existingUser;
       next();
     } else {
-      next({ status: 401, message: "invalid credentials" });
+      next({ status: 401, message: "Invalid credentials." });
     }
   } catch (err) {
     next(err);
@@ -54,7 +54,7 @@ const checkEmailUnique = async (req, res, next) => {
       ? next()
       : next({
           status: 400,
-          message: "an account with this email already exists",
+          message: "An account with this email already exists.",
         });
   } catch (err) {
     next(err);
@@ -68,7 +68,7 @@ const checkPhoneUnique = async (req, res, next) => {
       ? next()
       : next({
           status: 400,
-          message: "an account with this phone already exists",
+          message: "An account with this phone already exists.",
         });
   } catch (err) {
     next(err);

@@ -26,7 +26,7 @@ server.use((err, req, res, next) => {
     .json({
       devMessage: err.message,
       stack: err.stack,
-      prodMessage: "sorry there was an error",
+      prodMessage: err.message || "Sorry! Something went wrong.",
     });
 });
 
