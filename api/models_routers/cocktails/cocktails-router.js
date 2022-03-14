@@ -21,7 +21,10 @@ router.get("/:id", async (req, res, next) => {
 
 router.get("/:id/ingredients", async (req, res, next) => {
   try {
-  
+    const ingredients = await Cocktails.getCocktailIngredients(req.params.id)
+    res.status(200).json(ingredients)
+  } catch(err){
+    next(err)
   }
 })
 

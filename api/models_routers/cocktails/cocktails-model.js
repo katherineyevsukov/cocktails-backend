@@ -50,7 +50,7 @@ async function getByCocktailId(id) {
 async function getCocktailIngredients (id){
   const ingredients = await db("ingredients as i")
   .select("i.id", "i.name", "i.alcoholic", "i.category", "ci.quantity")
-  .join("cocktails_ingredients as ci", "i.id", "ci.id")
+  .join("cocktails_ingredients as ci", "i.id", "ci.ingredient_id")
   .whereNull("ci.deleted_at", "i.deleted_at")
   .andWhere("ci.cocktail_id", id)
   return ingredients
