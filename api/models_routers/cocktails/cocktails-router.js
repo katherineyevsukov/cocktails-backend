@@ -28,4 +28,13 @@ router.get("/:id/ingredients", async (req, res, next) => {
   }
 })
 
+router.get("/:id/steps", async (req, res, next) => {
+  try {
+    const steps = await Cocktails.getCocktailSteps(req.params.id)
+    res.status(200).json(steps)
+  } catch(err){
+    next(err)
+  }
+})
+
 module.exports = router;
