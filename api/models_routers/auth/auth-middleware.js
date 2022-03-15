@@ -2,7 +2,7 @@ const Users = require("../users/users-model");
 const bcrypt = require("bcryptjs");
 const { BCRYPT_ROUNDS, TOKEN_SECRET } = require("./../../config/index");
 const { userSchema } = require("./auth-schemas");
-const yup = require("yup");
+const jwt = require("jsonwebtoken");
 
 const restricted = (req, res, next) => {
   const token = req.headers.authorization;
@@ -104,4 +104,5 @@ module.exports = {
   checkPhoneUnique,
   validateRegistrationBody,
   createNewUser,
+  restricted
 };

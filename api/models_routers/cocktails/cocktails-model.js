@@ -2,19 +2,19 @@ const db = require("../../data/db-config");
 
 async function getAll() {
   const cocktails = await db("cocktails as c")
-  .select(
-    "c.id",
-    "c.name",
-    "c.photo",
-    "g.type as glass_type",
-    "c.garnish",
-    "u.id as user_id",
-    "u.first_name",
-    "u.last_name"
-  )
-  .join("users as u", "c.user_id", "u.id")
-  .join("glasses as g", "c.glass_type", "g.id")
-  .whereNull("c.deleted_at", "u.deleted_at", "g.deleted_at")
+    .select(
+      "c.id",
+      "c.name",
+      "c.photo",
+      "g.type as glass_type",
+      "c.garnish",
+      "u.id as user_id",
+      "u.first_name",
+      "u.last_name"
+    )
+    .join("users as u", "c.user_id", "u.id")
+    .join("glasses as g", "c.glass_type", "g.id")
+    .whereNull("c.deleted_at", "u.deleted_at", "g.deleted_at");
 
   return cocktails;
 }
@@ -38,6 +38,25 @@ async function getByCocktailId(id) {
     .first();
 
   return cocktail;
+}
+
+async function getUserCocktailsById(id) {
+  const cocktails = await db("cocktails as c")
+    .select(
+      "c.id",
+      "c.name",
+      "c.photo",
+      "g.type as glass_type",
+      "c.garnish",
+      "u.id as user_id",
+      "u.first_name",
+      "u.last_name"
+    )
+    .join("users as u", "c.user_id", "u.id")
+    .join("glasses as g", "c.glass_type", "g.id")
+    .whereNull("c.deleted_at", "u.deleted_at", "g.deleted_at")
+    .andWhere("u.id", id);
+  return cocktails;
 }
 
 // getById(3).then(res => {
@@ -79,5 +98,10 @@ async function getCocktailSteps(id) {
 // and cs.deleted_at is null
 // order by cs.step_number asc
 
-
-module.exports = { getAll, getByCocktailId, getCocktailIngredients, getCocktailSteps };
+module.exports = {
+  getAll,
+  getByCocktailId,
+  getCocktailIngredients,
+  getCocktailSteps,
+  getUserCocktailsById,
+};
