@@ -47,13 +47,13 @@ async function getByCocktailId(id) {
 // where c.deleted_at is null
 // and u.deleted_at is null
 
-async function getCocktailIngredients (id){
+async function getCocktailIngredients(id) {
   const ingredients = await db("ingredients as i")
-  .select("i.id", "i.name", "i.alcoholic", "i.category", "ci.quantity")
-  .join("cocktails_ingredients as ci", "i.id", "ci.ingredient_id")
-  .whereNull("ci.deleted_at", "i.deleted_at")
-  .andWhere("ci.cocktail_id", id)
-  return ingredients
+    .select("i.id", "i.name", "i.alcoholic", "i.category", "ci.quantity")
+    .join("cocktails_ingredients as ci", "i.id", "ci.ingredient_id")
+    .whereNull("ci.deleted_at", "i.deleted_at")
+    .andWhere("ci.cocktail_id", id);
+  return ingredients;
 }
 
 // select i.id, i.name, i.alcoholic, i.category, ci.quantity
@@ -63,4 +63,19 @@ async function getCocktailIngredients (id){
 // where ci.cocktail_id = 1
 // and ci.deleted_at is null
 // and i.deleted_at is null
-module.exports = { getAll, getByCocktailId, getCocktailIngredients };
+
+async function getCocktailSteps(id) {
+  const steps = await db("cocktails_steps as cs")
+    .select("cs.id", "cs.step_number", "cs.step_instructions")
+    .whereNull("cs.deleted_at")
+    .andWhere("cs.cocktail_id", id);
+  return steps;
+}
+
+// SELECT cs.id, cs.step_number, cs.step_instructions from cocktails_steps as cs
+// where cs.cocktail_id = 1
+// and cs.deleted_at is null
+// order by cs.step_number asc
+
+
+module.exports = { getAll, getByCocktailId, getCocktailIngredients, getCocktailSteps };
