@@ -13,6 +13,7 @@ router.post("/login", checkUserValid, (req, res) => {
   const user = req.userFromDb;
   res.status(200).json({
     message: `welcome, ${user.first_name}`,
+    user_id: user.id,
     token: tokenBuilder(user),
   });
 });
