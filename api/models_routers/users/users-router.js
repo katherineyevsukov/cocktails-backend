@@ -21,8 +21,8 @@ router.get("/", async (req, res, next) => {
 //   }
 // });
 
-router.get("/cocktails", restricted, async(req, res, next) => {
-  const cocktails = await Cocktails.getUserCocktailsById(req.decodedJwt.subject)
+router.get("/:id/cocktails", async(req, res, next) => {
+  const cocktails = await Cocktails.getUserCocktailsById(req.params.id)
   res.status(200).json(cocktails)
 })
 
