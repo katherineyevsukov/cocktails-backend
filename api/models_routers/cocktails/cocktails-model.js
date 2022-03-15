@@ -24,14 +24,15 @@ async function getByCocktailId(id) {
       "c.id",
       "c.name",
       "c.photo",
-      "c.glass_type",
+      "g.type as glass_type",
       "c.garnish",
       "u.id as user_id",
       "u.first_name",
       "u.last_name"
     )
     .join("users as u", "c.user_id", "u.id")
-    .whereNull("c.deleted_at", "u.deleted_at")
+    .join("glasses as g", "c.glass_type", "g.id")
+    .whereNull("c.deleted_at", "u.deleted_at", "g.deleted_at")
     .andWhere("c.id", id)
     .first();
 
