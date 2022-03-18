@@ -21,6 +21,11 @@ router.get("/", async (req, res, next) => {
 //   }
 // });
 
+router.get("/current-user/cocktails", restricted, async (req, res, next)  => {
+  const cocktails = await Cocktails.getUserCocktailsById(req.decodedJwt.subject)
+  res.status(200).json(cocktails)
+})
+
 router.get("/:id/cocktails", async(req, res, next) => {
   const cocktails = await Cocktails.getUserCocktailsById(req.params.id)
   res.status(200).json(cocktails)

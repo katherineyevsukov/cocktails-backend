@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 
 const restricted = (req, res, next) => {
   const token = req.headers.authorization;
-
+  console.log(token)
   if (!token) {
     next({ status: 401, message: "Token required" });
   } else {
